@@ -24,10 +24,9 @@ name: Synchronize Web SDK docs to dash0.com/docs
 # are not hardcoded here. Authentication uses the DASH0_DOCS_REPO_GITHUB_PAT secret: a fine-grained PAT scoped
 # to the target repository with Contents: Read and write and Pull requests: Read and write.
 
-# sync-docs-action feat/dry-run-and-coverage-guard (built-in dry-run, coverage guard, reviewer/assignee inputs).
-# https://github.com/dash0hq/sync-docs-action/pull/6 — re-pin to a release tag once that lands.
-env:
-  SYNC_DOCS_ACTION_REF: 65a71ea6ae39a975fc6e6dcc1f7dd0b3262e0e73
+# sync-docs-action (built-in dry-run, coverage guard, reviewer/assignee inputs) from
+# https://github.com/dash0hq/sync-docs-action/pull/6, merged to main. Pinned to the merged commit; re-pin to a
+# release tag once one is cut that includes these features (the latest tag, v0.3.0, predates that merge).
 
 on:
   workflow_dispatch:
@@ -68,7 +67,7 @@ jobs:
       # can be supplied unconditionally. source-root and transformations-file inherit their defaults (`.` and
       # `.github/workflows/sync-docs/transformations.yaml`).
       - name: synchronize docs to the website
-        uses: dash0hq/sync-docs-action@65a71ea6ae39a975fc6e6dcc1f7dd0b3262e0e73 # feat/dry-run-and-coverage-guard
+        uses: dash0hq/sync-docs-action@3fbe55fed800da21ee24d6b6dba1a86435f61565 # PR #6 merged to main
         with:
           dry-run: ${{ inputs.dry-run }}
           target-repository: ${{ secrets.SYNC_DOCUMENTATION_TARGET_REPOSITORY }}
